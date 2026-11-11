@@ -1,43 +1,71 @@
-# Journal des attaques simulées
+# Simulated Attack Log
 
-Environnement : manager Wazuh (192.168.56.10), agent `victime-ubuntu`,
-attaques lancées depuis Kali Linux et sur la machine cible elle-même.
+**Environment:** Wazuh manager (`192.168.56.10`), Wazuh agent `victime-ubuntu`. Attacks were launched from Kali Linux and directly on the target machine.
 
-## Tableau des alertes
+## Alert Summary
 
-| Date  | Attaque                        | Règle | Niveau | Technique MITRE |
-|-------|---------------------------------|-------|--------|------------------|
-| 11/11 | Compte suspect (création)      | 5902  | 8      | T1136            |
-| 11/11 | Compte suspect (suppression)   | 5903  | 3      | T1136            |
-| 11/11 | Sudo (succès)                   | 5402  | 3      | T1548            |
-| 11/11 | Modification de fichier (FIM)   | 550   | 7      | T1565            |
-| 11/11 | Brute force SSH (échecs)        | 5760  | 5      | T1110            |
+| **Date** | **Attack** | **Rule ID** | **Level** | **MITRE ATT&CK Technique** |
+|---|---|---:|---:|---|
+| 11/11 | Suspicious account creation | 5902 | 8 | T1136 |
+| 11/11 | Suspicious account deletion | 5903 | 3 | T1136 |
+| 11/11 | Successful sudo execution | 5402 | 3 | T1548 |
+| 11/11 | File modification (FIM) | 550 | 7 | T1565 |
+| 11/11 | SSH brute-force attempts (failed logins) | 5760 | 5 | T1110 |
 
-## Détail des attaques
+## Attack Details
 
-### Brute force SSH (T1110)
-Commande (depuis Kali) :
-\`\`\`bash
-hydra -l root -P mots.txt -t 4 ssh://<IP-cible>
-\`\`\`
-Résultat : alertes répétées "sshd: authentication failed" (règle 5760)
-et "PAM: User login failed" (règle 5503).
+### 1. SSH Brute-Force Attack (T1110)
 
-### Compte suspect (T1136)
-\`\`\`bash
+**Command (executed from Kali Linux):**
+
+```bash
+hydra -l root -P mots.txt -t 4 ssh://<target-ip>
+```
+
+**Result:** Repeated alerts were generated, including:
+
+- `sshd: authentication failed` (Rule ID: 5760)
+- `PAM: User login failed` (Rule ID: 5503)
+
+These alerts indicate repeated failed SSH authentication attempts.
+
+### 2. Suspicious Account Creation and Deletion (T1136)
+
+**Commands:**
+
+```bash
 sudo useradd hacker
 sudo userdel hacker
-\`\`\`
-Résultat : "New user added to the system" (5902) puis
-"Group (or user) deleted from the system" (5903).
+```
 
-### Sudo réussi (T1548)
-\`\`\`bash
+**Result:** Wazuh generated the following alerts:
+
+- `New user added to the system` (Rule ID: 5902)
+- `Group (or user) deleted from the system` (Rule ID: 5903)
+
+These events demonstrate the monitoring of user account creation and deletion.
+
+### 3. Successful Sudo Execution (T1548)
+
+**Command:**
+
+```bash
 sudo ls
-\`\`\`
-Résultat : "Successful sudo to ROOT executed" (5402).
+```
 
-### Intégrité de fichier / FIM (T1565)
-Modification d'un fichier surveillé par syscheck.
-Résultat : "Integrity checksum changed" (550), niveau 7 — alerte la
-plus élevée observée.
+**Result:** Wazuh generated the alert:
+
+- `Successful sudo to ROOT executed` (Rule ID: 5402)
+
+This event records a successful command execution using elevated privileges.
+
+### 4. File Integrity Monitoring (FIM) (T1565)
+
+A file monitored by Wazuh Syscheck was modified.
+
+**Result:** Wazuh generated the following alert:
+
+- `Integrity checksum changed` (Rule ID: 550)
+- **Alert level:** 7
+
+This was the highest alert level observed during these simulations.
