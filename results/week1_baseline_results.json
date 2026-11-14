@@ -1,0 +1,22 @@
+{
+  "qwen": {
+    "model": "Qwen/Qwen2.5-3B-Instruct",
+    "load_time_s": 43.5,
+    "vram_model_gb": 5.75,
+    "vram_peak_gb": 5.77,
+    "latency_s": 7.95,
+    "new_tokens": 143,
+    "tokens_per_s": 18.0,
+    "answer": "Severity: High\n\nMITRE ATT&CK Technique: T1071 - Command and Scripting Interpreter (e.g., using Bash)\n\nAction: \n1. Implement rate limiting or IP blocking for SSH login attempts from 185.220.101.4.\n2. Review the server's SSH configuration to ensure it is set up securely (e.g., disable root login via SSH).\n3. Conduct a forensic analysis of the successful login event to identify if it was an insider threat or a legitimate user.\n4. Educate users about phishing and social engineering tactics that could lead to such incidents.\n5. Consider implementing multi-factor authentication (MFA) to enhance security."
+  },
+  "phi": {
+    "model": "microsoft/Phi-3.5-mini-instruct",
+    "load_time_s": 33.1,
+    "vram_model_gb": 7.13,
+    "vram_peak_gb": 7.24,
+    "latency_s": 8.73,
+    "new_tokens": 200,
+    "tokens_per_s": 22.9,
+    "answer": "Severity: High\n\nMITRE ATT&CK Technique: T1110 - Brute Force (Credentials)\n\nRecommended Action:\n1. Immediately block the IP address 185.220.101.4 at the firewall level to prevent further attempts.\n2. Investigate the failed login attempts to determine if they are part of a larger attack pattern or if they are random attempts.\n3. Review and strengthen SSH authentication mechanisms, such as implementing key-based authentication, disabling root login, and enforcing account lockout policies.\n4. Monitor for any further suspicious activities and consider implementing an intrusion detection system (IDS) or intrusion prevention system (IPS) for better detection and response.\n5. Conduct a security audit to ensure that all systems are up to date with the latest patches and that proper security measures are in place.\n"
+  }
+}
