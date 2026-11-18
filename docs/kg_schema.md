@@ -102,4 +102,5 @@ Depuis la racine du dépôt, avec Neo4j démarré et un fichier `.env` rempli (m
 python kg/create_constraints.py
 python kg/import_attack.py
 python kg/check_graph.py
+python kg/import_cve_cwe.py
 ```
