@@ -10,8 +10,8 @@ Base : Neo4j. Ce document est le contrat entre les modules (KG, RAG, agents, API
 | Host | hostname | os, criticality | Wazuh | À faire (S3) |
 | IP | address | is_internal | Wazuh | À faire (S3) |
 | User | username | | Wazuh | À faire (S3) |
-| Vulnerability | cve_id | cvss, description | NVD (CVE) | À faire (S2) |
-| Weakness | cwe_id | name | MITRE (CWE) | À faire (S2) |
+| Vulnerability | cve_id | cvss, description | NVD (CVE) | Importé |
+| Weakness | cwe_id | name | MITRE (CWE) | Importé |
 | Technique | attack_id | name, description, stix_id | MITRE ATT&CK | Importé |
 | Tactic | shortname | name, attack_id | MITRE ATT&CK | Importé |
 | Malware | name | description | MITRE ATT&CK | Importé |
