@@ -1,72 +1,70 @@
 # Format JSON des alertes normalisées
 
-Chaque alerte Wazuh est transformée dans ce format avant stockage, pour que les autres modules (agents, dashboard) travaillent avec un schéma unique quelle que soit la source.
+Chaque alerte Wazuh est transformée dans ce format avant stockage, pour que les autres modules (agents, Knowledge Graph, dashboard) travaillent avec un schéma unique.
+
+Échantillon actuel : 100 alertes, 8 techniques MITRE (T1110.001, T1078, T1548.003, T1531, T1136, T1110, T1565.001, T1562.001), généré à partir de 3 jours de simulation (11, 17 et 19 novembre 2026).
 
 ## Schéma
 
 | Champ | Type | Description |
 |---|---|---|
-| id | string | Identifiant unique de l'alerte Wazuh |
+| alert_id | string | Identifiant unique de l'alerte Wazuh |
 | timestamp | string (ISO 8601) | Date et heure de l'alerte |
-| source | string | Toujours "wazuh" pour le moment |
-| host | string | Nom de la machine ayant généré l'alerte |
-| rule_id | string | ID de la règle Wazuh |
-| rule_description | string | Description lisible de l'alerte |
 | severity | integer | Niveau de sévérité (0-15) |
-| mitre_ids | array[string] | Techniques MITRE ATT&CK associées |
-| src_ip | string \| null | IP source si applicable |
-| raw_log | string | Log brut original |
-| label | string \| null | Étiquette manuelle (non utilisée pour l'instant) |
+| rule_id | string | ID de la règle Wazuh |
+| rule_desc | string | Description lisible de l'alerte |
+| hostname | string | Nom de la machine ayant généré l'alerte |
+| src_ip | string \| null | IP source (attaquant) |
+| dst_ip | string \| null | IP de la machine ciblée |
+| user | string \| null | Utilisateur concerné |
+| mitre_technique | string \| null | Technique MITRE ATT&CK principale |
 
 ## Exemples
 
 ### Brute force SSH
 ```json
 {
-  "id": "1794430113.2408712",
+  "alert_id": "1794430113.2408712",
   "timestamp": "2026-11-11T20:48:33.136+0000",
-  "source": "wazuh",
-  "host": "victime-ubuntu",
-  "rule_id": "5760",
-  "rule_description": "sshd: authentication failed.",
   "severity": 5,
-  "mitre_ids": ["T1110.001", "T1021.004"],
+  "rule_id": "5760",
+  "rule_desc": "sshd: authentication failed.",
+  "hostname": "victime-ubuntu",
   "src_ip": "192.168.56.20",
-  "raw_log": "Nov 11 20:48:30 machine2 sshd[18644]: Failed password for root from 192.168.56.20 port 41480 ssh2",
-  "label": null
+  "dst_ip": "192.168.56.11",
+  "user": "root",
+  "mitre_technique": "T1110.001"
 }
 ```
 
 ### Création d'utilisateur
 ```json
 {
-  "id": "1794430169.2412930",
+  "alert_id": "1794430169.2412930",
   "timestamp": "2026-11-11T20:49:29.452+0000",
-  "source": "wazuh",
-  "host": "victime-ubuntu",
-  "rule_id": "5902",
-  "rule_description": "New user added to the system.",
   "severity": 8,
-  "mitre_ids": ["T1136"],
+  "rule_id": "5902",
+  "rule_desc": "New user added to the system.",
+  "hostname": "victime-ubuntu",
   "src_ip": null,
-  "raw_log": "Nov 11 20:49:27 machine2 useradd[18756]: new user: name=hacker, UID=1003, GID=1003, home=/home/hacker, shell=/bin/sh, from=/dev/pts/1",
-  "label": null
+  "dst_ip": "192.168.56.11",
+  "user": null,
+  "mitre_technique": "T1136"
 }
 ```
 
 ### Évasion de défense (agent Wazuh arrêté)
 ```json
 {
-  "id": "1794430353.2418043",
+  "alert_id": "1794430353.2418043",
   "timestamp": "2026-11-11T20:52:33.941+0000",
-  "source": "wazuh",
-  "host": "victime-ubuntu",
-  "rule_id": "506",
-  "rule_description": "Wazuh agent stopped.",
   "severity": 3,
-  "mitre_ids": ["T1562.001"],
+  "rule_id": "506",
+  "rule_desc": "Wazuh agent stopped.",
+  "hostname": "victime-ubuntu",
   "src_ip": null,
-  "raw_log": "ossec: Agent stopped: 'victime-ubuntu->any'.",
-  "label": null
+  "dst_ip": "192.168.56.11",
+  "user": null,
+  "mitre_technique": "T1562.001"
 }
 ```
