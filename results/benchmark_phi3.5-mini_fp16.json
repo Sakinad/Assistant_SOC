@@ -1,0 +1,189 @@
+{
+  "tag": "phi3.5-mini_fp16",
+  "model": "microsoft/Phi-3.5-mini-instruct",
+  "date": "2026-11-19T20:42:17",
+  "prompt_version": "v2-explanation",
+  "gpu": "Tesla T4",
+  "load_time_s": 31.4,
+  "vram_after_load_gb": 7.12,
+  "peak_vram_gb": 7.27,
+  "mcq": {
+    "n": 30,
+    "accuracy": 0.833,
+    "accuracy_ci95": [
+      0.664,
+      0.927
+    ],
+    "unparsed": 0,
+    "latency": {
+      "mean_s": 0.211,
+      "median_s": 0.214,
+      "p95_s": 0.327,
+      "mean_tokens_per_s": 22.4
+    }
+  },
+  "alerts": {
+    "alerts_cyber": {
+      "n": 40,
+      "category_accuracy": 0.875,
+      "category_accuracy_ci95": [
+        0.739,
+        0.945
+      ],
+      "category_macro_f1": 0.876,
+      "per_class": {
+        "brute_force": {
+          "precision": 0.625,
+          "recall": 1.0,
+          "f1": 0.769,
+          "support": 5
+        },
+        "port_scan": {
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8,
+          "support": 5
+        },
+        "sql_injection": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.889,
+          "support": 5
+        },
+        "phishing": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "ransomware": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "data_exfiltration": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.889,
+          "support": 5
+        },
+        "privilege_escalation": {
+          "precision": 0.833,
+          "recall": 1.0,
+          "f1": 0.909,
+          "support": 5
+        },
+        "benign": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "f1": 0.75,
+          "support": 5
+        }
+      },
+      "severity_accuracy": 0.6,
+      "mitre_accuracy": 0.3,
+      "invalid_format_rate": 0.0,
+      "invalid_mitre_rate": 0.225,
+      "unsupported_entity_rate": 0.0,
+      "hallucination_rate": 0.225,
+      "latency": {
+        "mean_s": 3.563,
+        "median_s": 3.066,
+        "p95_s": 5.816,
+        "mean_tokens_per_s": 24.6
+      }
+    },
+    "alerts_soc_logs": {
+      "n": 40,
+      "category_accuracy": 0.925,
+      "category_accuracy_ci95": [
+        0.801,
+        0.974
+      ],
+      "category_macro_f1": 0.917,
+      "per_class": {
+        "brute_force": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "port_scan": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "sql_injection": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "phishing": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "ransomware": {
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.571,
+          "support": 5
+        },
+        "data_exfiltration": {
+          "precision": 0.625,
+          "recall": 1.0,
+          "f1": 0.769,
+          "support": 5
+        },
+        "privilege_escalation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        },
+        "benign": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 5
+        }
+      },
+      "severity_accuracy": 0.25,
+      "mitre_accuracy": 0.3,
+      "invalid_format_rate": 0.0,
+      "invalid_mitre_rate": 0.2,
+      "unsupported_entity_rate": 0.0,
+      "hallucination_rate": 0.2,
+      "latency": {
+        "mean_s": 3.457,
+        "median_s": 2.935,
+        "p95_s": 5.741,
+        "mean_tokens_per_s": 24.7
+      }
+    }
+  },
+  "throughput": {
+    "batch_1": {
+      "samples_per_s": 0.41,
+      "tokens_per_s": 24.5,
+      "total_time_s": 39.23,
+      "peak_vram_gb": 7.24
+    },
+    "batch_4": {
+      "samples_per_s": 1.24,
+      "tokens_per_s": 74.5,
+      "total_time_s": 12.89,
+      "peak_vram_gb": 7.56
+    },
+    "batch_8": {
+      "samples_per_s": 2.03,
+      "tokens_per_s": 121.9,
+      "total_time_s": 7.87,
+      "peak_vram_gb": 8.0
+    }
+  }
+}
