@@ -1,0 +1,251 @@
+{
+  "tag": "qwen2.5-3b_qlora",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "method": "QLoRA 4 bits (NF4)",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": "all-linear"
+  },
+  "epochs": 3,
+  "lr": 0.0002,
+  "batch_size": 4,
+  "grad_accum": 4,
+  "effective_batch": 16,
+  "n_train": 1200,
+  "n_val": 120,
+  "smoke_test": false,
+  "train_time_min": 34.3,
+  "peak_vram_gb": 5.68,
+  "final_train_loss": 0.0008977876044809818,
+  "eval_loss_by_epoch": [
+    0.8105,
+    0.8603,
+    0.8681
+  ],
+  "quick_check_on_val": {
+    "n": 20,
+    "json_valide": 20,
+    "categorie_correcte": 20,
+    "exemples": [
+      {
+        "attendu": {
+          "category": "ransomware",
+          "severity": "critical",
+          "mitre": "T1486",
+          "explanation": "Files ending in .encrypted on mail-01 and a ransom message show ransomware affecting the engineering department."
+        },
+        "obtenu": "{\"category\": \"ransomware\", \"severity\": \"critical\", \"mitre\": \"T1486\", \"explanation\": \"Files on mail-01 ending with .encrypted and a ransom demand indicate ransomware targeting the engineering department.\"}"
+      },
+      {
+        "attendu": {
+          "category": "port_scan",
+          "severity": "medium",
+          "mitre": "T1046",
+          "explanation": "10.10.8.239 touched 29 ports on dev-03 with empty packets, typical of internal port scanning."
+        },
+        "obtenu": "{\"category\": \"port_scan\", \"severity\": \"low\", \"mitre\": \"T1046\", \"explanation\": \"10.10.8.239 touched 29 ports on dev-03 in 33 seconds without sending data, which indicates a port scan.\"}"
+      },
+      {
+        "attendu": {
+          "category": "sql_injection",
+          "severity": "medium",
+          "mitre": "T1190",
+          "explanation": "The OR 1=1 payload in the username sent by 203.0.113.13 is a SQL injection attempt that was rejected."
+        },
+        "obtenu": "{\"category\": \"sql_injection\", \"severity\": \"high\", \"mitre\": \"T1190\", \"explanation\": \"The rejected JSON from 203.0.113.13 uses SQL injection payload admin' OR 1=1 -- and was blocked on fin-01.\"}"
+      }
+    ]
+  },
+  "adapter_dir": "/content/drive/MyDrive/cybersoc/adapters/qwen2.5-3b_qlora/adapter",
+  "log_history": [
+    {
+      "loss": 0.7660972118377686,
+      "grad_norm": 0.646838366985321,
+      "learning_rate": 0.00019983691039261357,
+      "epoch": 0.13333333333333333,
+      "step": 10
+    },
+    {
+      "loss": 0.34795169830322265,
+      "grad_norm": 0.6921219229698181,
+      "learning_rate": 0.00019800825610923934,
+      "epoch": 0.26666666666666666,
+      "step": 20
+    },
+    {
+      "loss": 0.1393679976463318,
+      "grad_norm": 0.5680464506149292,
+      "learning_rate": 0.000194654694704549,
+      "epoch": 0.4,
+      "step": 30
+    },
+    {
+      "loss": 0.047346800565719604,
+      "grad_norm": 0.6241529583930969,
+      "learning_rate": 0.0001891006524188368,
+      "epoch": 0.5333333333333333,
+      "step": 40
+    },
+    {
+      "loss": 0.02320859730243683,
+      "grad_norm": 0.29931679368019104,
+      "learning_rate": 0.0001817327777949407,
+      "epoch": 0.6666666666666666,
+      "step": 50
+    },
+    {
+      "loss": 0.01640619933605194,
+      "grad_norm": 0.23060691356658936,
+      "learning_rate": 0.00017270105951300738,
+      "epoch": 0.8,
+      "step": 60
+    },
+    {
+      "loss": 0.007552050054073334,
+      "grad_norm": 0.277902752161026,
+      "learning_rate": 0.00016218935731193224,
+      "epoch": 0.9333333333333333,
+      "step": 70
+    },
+    {
+      "eval_loss": 0.8104962706565857,
+      "eval_runtime": 20.5085,
+      "eval_samples_per_second": 5.851,
+      "eval_steps_per_second": 1.463,
+      "epoch": 1.0,
+      "step": 75
+    },
+    {
+      "loss": 0.0051680892705917355,
+      "grad_norm": 0.04455677047371864,
+      "learning_rate": 0.0001504116591352832,
+      "epoch": 1.0666666666666667,
+      "step": 80
+    },
+    {
+      "loss": 0.004318571835756302,
+      "grad_norm": 0.4208991825580597,
+      "learning_rate": 0.00013760772495385998,
+      "epoch": 1.2,
+      "step": 90
+    },
+    {
+      "loss": 0.003328895941376686,
+      "grad_norm": 0.16616016626358032,
+      "learning_rate": 0.00012403820594409924,
+      "epoch": 1.3333333333333333,
+      "step": 100
+    },
+    {
+      "loss": 0.0008116697892546654,
+      "grad_norm": 0.011801027692854404,
+      "learning_rate": 0.00010997933838177827,
+      "epoch": 1.4666666666666668,
+      "step": 110
+    },
+    {
+      "loss": 0.0008991299197077751,
+      "grad_norm": 0.008711745962500572,
+      "learning_rate": 9.571732026803977e-05,
+      "epoch": 1.6,
+      "step": 120
+    },
+    {
+      "loss": 0.0006505625788122416,
+      "grad_norm": 0.018378516659140587,
+      "learning_rate": 8.154248516341548e-05,
+      "epoch": 1.7333333333333334,
+      "step": 130
+    },
+    {
+      "loss": 0.0006260767113417387,
+      "grad_norm": 0.0047807106748223305,
+      "learning_rate": 6.774339183378663e-05,
+      "epoch": 1.8666666666666667,
+      "step": 140
+    },
+    {
+      "loss": 0.00284205786883831,
+      "grad_norm": 0.009872209280729294,
+      "learning_rate": 5.4600950026045326e-05,
+      "epoch": 2.0,
+      "step": 150
+    },
+    {
+      "eval_loss": 0.8603410124778748,
+      "eval_runtime": 20.5081,
+      "eval_samples_per_second": 5.851,
+      "eval_steps_per_second": 1.463,
+      "epoch": 2.0,
+      "step": 150
+    },
+    {
+      "loss": 0.00021927668713033198,
+      "grad_norm": 0.007868380285799503,
+      "learning_rate": 4.238270195572472e-05,
+      "epoch": 2.1333333333333333,
+      "step": 160
+    },
+    {
+      "loss": 0.0005283601116389036,
+      "grad_norm": 0.005952790379524231,
+      "learning_rate": 3.133737591901864e-05,
+      "epoch": 2.2666666666666666,
+      "step": 170
+    },
+    {
+      "loss": 0.0002564992755651474,
+      "grad_norm": 0.0031856924761086702,
+      "learning_rate": 2.1689822901944457e-05,
+      "epoch": 2.4,
+      "step": 180
+    },
+    {
+      "loss": 0.00023790171835571527,
+      "grad_norm": 0.04801797494292259,
+      "learning_rate": 1.3636439262684298e-05,
+      "epoch": 2.533333333333333,
+      "step": 190
+    },
+    {
+      "loss": 0.0006159069947898388,
+      "grad_norm": 0.003559276694431901,
+      "learning_rate": 7.341168668092857e-06,
+      "epoch": 2.6666666666666665,
+      "step": 200
+    },
+    {
+      "loss": 0.0005075410939753055,
+      "grad_norm": 0.004608639981597662,
+      "learning_rate": 2.9321646734147502e-06,
+      "epoch": 2.8,
+      "step": 210
+    },
+    {
+      "loss": 0.0008977876044809818,
+      "grad_norm": 0.003461423795670271,
+      "learning_rate": 4.991818854640395e-07,
+      "epoch": 2.9333333333333336,
+      "step": 220
+    },
+    {
+      "eval_loss": 0.8680627942085266,
+      "eval_runtime": 20.5283,
+      "eval_samples_per_second": 5.846,
+      "eval_steps_per_second": 1.461,
+      "epoch": 3.0,
+      "step": 225
+    },
+    {
+      "train_runtime": 2060.3134,
+      "train_samples_per_second": 1.747,
+      "train_steps_per_second": 0.109,
+      "total_flos": 1.6470946692071424e+16,
+      "train_loss": 0.06088537285207874,
+      "epoch": 3.0,
+      "step": 225
+    }
+  ]
+}

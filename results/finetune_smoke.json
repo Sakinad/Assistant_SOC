@@ -1,0 +1,70 @@
+{
+  "tag": "smoke",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "method": "QLoRA 4 bits (NF4)",
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": "all-linear"
+  },
+  "epochs": 3,
+  "lr": 0.0002,
+  "batch_size": 4,
+  "grad_accum": 4,
+  "effective_batch": 16,
+  "n_train": 1200,
+  "n_val": 120,
+  "smoke_test": true,
+  "train_time_min": 1.5,
+  "peak_vram_gb": 5.68,
+  "final_train_loss": null,
+  "eval_loss_by_epoch": [
+    0.5345
+  ],
+  "quick_check_on_val": {
+    "n": 2,
+    "json_valide": 2,
+    "categorie_correcte": 2,
+    "exemples": [
+      {
+        "attendu": {
+          "category": "ransomware",
+          "severity": "critical",
+          "mitre": "T1486",
+          "explanation": "Files ending in .encrypted on mail-01 and a ransom message show ransomware affecting the engineering department."
+        },
+        "obtenu": "{\"category\": \"ransomware\", \"severity\": \"critical\", \"mitre\": \"T1486\", \"explanation\": \"mail-01's files ending with .encrypted and the ransom demand indicate a ransomware attack.\"}"
+      },
+      {
+        "attendu": {
+          "category": "port_scan",
+          "severity": "medium",
+          "mitre": "T1046",
+          "explanation": "10.10.8.239 touched 29 ports on dev-03 with empty packets, typical of internal port scanning."
+        },
+        "obtenu": "{\"category\": \"port_scan\", \"severity\": \"low\", \"mitre\": \"T1046\", \"explanation\": \"10.10.8.239 touched 29 ports on dev-03 in 33s, which is typical for port scanning.\"}"
+      }
+    ]
+  },
+  "adapter_dir": "/content/adapters/smoke/adapter",
+  "log_history": [
+    {
+      "eval_loss": 0.5344963073730469,
+      "eval_runtime": 20.9282,
+      "eval_samples_per_second": 5.734,
+      "eval_steps_per_second": 1.433,
+      "epoch": 0.10666666666666667,
+      "step": 8
+    },
+    {
+      "train_runtime": 89.4,
+      "train_samples_per_second": 1.432,
+      "train_steps_per_second": 0.089,
+      "total_flos": 579093531426816.0,
+      "train_loss": 0.8382537961006165,
+      "epoch": 0.10666666666666667,
+      "step": 8
+    }
+  ]
+}
