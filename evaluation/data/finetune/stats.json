@@ -1,0 +1,53 @@
+{
+  "n_train": 1200,
+  "n_val": 120,
+  "seed": 42,
+  "parse_errors": 0,
+  "dropped": {
+    "doublon": 8
+  },
+  "train_by_category": {
+    "sql_injection": 150,
+    "privilege_escalation": 150,
+    "brute_force": 150,
+    "data_exfiltration": 150,
+    "benign": 150,
+    "ransomware": 150,
+    "port_scan": 150,
+    "phishing": 150
+  },
+  "train_by_severity": {
+    "medium": 254,
+    "high": 459,
+    "low": 262,
+    "critical": 225
+  },
+  "val_by_category": {
+    "ransomware": 15,
+    "port_scan": 15,
+    "sql_injection": 15,
+    "privilege_escalation": 15,
+    "benign": 15,
+    "brute_force": 15,
+    "phishing": 15,
+    "data_exfiltration": 15
+  },
+  "holdout_templates": [
+    "be10",
+    "be9",
+    "bf10",
+    "bf9",
+    "ex10",
+    "ex9",
+    "pe10",
+    "pe9",
+    "ph10",
+    "ph9",
+    "ps10",
+    "ps9",
+    "rw10",
+    "rw9",
+    "sq10",
+    "sq9"
+  ]
+}
